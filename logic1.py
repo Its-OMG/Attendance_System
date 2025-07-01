@@ -423,7 +423,7 @@ def check_blacklist_status(token):
     cursor.execute("SELECT 1 FROM token_blacklist WHERE token = ?", (token,))
     if cursor.fetchone():
         conn.close()
-        raise HTTPException(status_code=401, detail="Token revoked")
+        raise HTTPException(status_code=400, detail="Token revoked")
     conn.close()
 
 # def search_attendance_by_name(name_query):

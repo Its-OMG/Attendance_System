@@ -115,7 +115,7 @@ def create_access_token(data: dict, expires_delta: timedelta=None):
     return encoded_jwt
 
 @app.get("/check-blacklist")
-def token_check(token: str=Query(...)):
+def token_check(token: str=Depends(oauth2_scheme)):
     try:
         check_blacklist_status(token=token)
         return {"message": "Token Not Revoked Yet"}
